@@ -1,0 +1,8 @@
+<h2>Check out this band!</h2>
+
+<%= @band.name %>
+<br>
+<form id='index-list' action='<%= band_url(@band) %>' method='POST'>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type='submit' value='Delete Band'>
+</form>

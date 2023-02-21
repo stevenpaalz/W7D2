@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    <nav class='main-nav'>
+      <h1 id='site-header'><a href='<%= new_session_url %>'>Music</a></h1>
+      <div class='cred_buttons'>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Log In</a>
+          <a href="<%= new_user_url %>">Sign Up</a>
+        <% else %>
+          <a href="<%= user_url(current_user) %>"><%= current_user.email %></a>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Log Out">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>
